@@ -1,19 +1,27 @@
-import React from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
-
+import React, {useState} from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import LoginIcon from '../../assets/login-icon.png';
+// import Modal from 'react-native-modal';
+import Modal from './Modal';
 
 type HeaderProps = {
   title: string;
 };
 
 const Header: React.FC<HeaderProps> = ({title}) => {
+  const [isModalVisible, setModalVisible] = useState(true);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.headerTitle}> {title.toUpperCase()}</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => setModalVisible(!isModalVisible)}>
         <Image source={LoginIcon} style={styles.loginIcon} />
       </TouchableOpacity>
+      <Modal setModalStatus={toggleModal} showModal={isModalVisible} />
     </View>
   );
 };
