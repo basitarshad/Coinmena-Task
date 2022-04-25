@@ -2,8 +2,8 @@ import React from 'react';
 import {Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import type {BottomTabNavigationOptions} from '@react-navigation/bottom-tabs';
-import CalendarView from '../screens/Home';
-import EventsListView from '../screens/Trade';
+import HomeScreen from '../screens/Home';
+import TradeScreen from '../screens/Trade';
 import {tabs} from './utils';
 
 const Tab = createBottomTabNavigator();
@@ -37,12 +37,12 @@ const BottomTabs = () => {
       <Tab.Screen
         name={homeScreen}
         key={homeScreen}
-        component={EventsListView}
+        component={HomeScreen}
       />
       <Tab.Screen
         name={tradeScreen}
         key={tradeScreen}
-        component={CalendarView}
+        component={TradeScreen}
       />
     </Tab.Navigator>
   );
