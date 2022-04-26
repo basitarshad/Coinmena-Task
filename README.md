@@ -1,6 +1,6 @@
 # Coinmena-Task
 
-It's a news app that display crypto currencies rates and data. You can see different currencies and their rates and also you can check the conversions.
+It's an app that display crypto currencies rates and data. You can see different currencies and their rates and also you can check the conversions.
 
 #How to run the app?
 
