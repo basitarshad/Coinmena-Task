@@ -9,7 +9,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({title}) => {
-  const [isModalVisible, setModalVisible] = useState(true);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
