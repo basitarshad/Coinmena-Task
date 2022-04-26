@@ -64,26 +64,12 @@ const ModalView: React.FC<ModalProps> = ({setModalStatus, showModal}) => {
       <View style={styles.container}>
         {userInfo ? (
           <>
-            <Text
-              style={{
-                color: '#ff4148',
-                fontSize: 16,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
+            <Text style={styles.userExists}>
               User is already login. Do you want to Logout?
             </Text>
 
             <TouchableOpacity
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: '#d4d4d4',
-                marginHorizontal: 20,
-                marginTop: 20,
-                borderRadius: 10,
-                height: 50,
-              }}
+              style={styles.logoutContainer}
               onPress={() => {
                 removeFromStorage('user_details');
                 setModalStatus();
@@ -159,5 +145,20 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     justifyContent: 'center',
+  },
+  userExists: {
+    color: '#ff4148',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  logoutContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#d4d4d4',
+    marginHorizontal: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    height: 50,
   },
 });

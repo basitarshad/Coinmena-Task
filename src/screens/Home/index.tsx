@@ -23,6 +23,7 @@ function HomeScreen() {
   const [assets, setAssetsData] = useState('');
   const [activityIndicator, showActivityIndicator] = useState(false);
   const [page, setPage] = useState(1);
+  const [userStatusChanged, setUserStatusChanged] = useState(false);
 
   useEffect(() => getAssets(), [page]);
 
@@ -32,8 +33,6 @@ function HomeScreen() {
       `https://data.messari.io/api/v1/assets?page=${page}&&with-profiles`,
     ).then(data => {
       if (assets) {
-        console.log('saved asset', Object.keys(assets));
-        console.log('saved data', Object.keys(data.data));
         let temp = [...assets, ...data.data.data];
         setAssetsData(temp);
       } else {
@@ -42,6 +41,10 @@ function HomeScreen() {
       showActivityIndicator(false);
       // console.log('bbb=>', data.data);
     });
+  };
+
+  const userUpdated = () => {
+    setUserStatusChanged(!userStatusChanged);
   };
 
   const renderItem = ({item, index}) => (
@@ -86,7 +89,7 @@ function HomeScreen() {
 
   return (
     <View style={{flex: 1}}>
-      <Header title={'Home'} />
+      <Header title={'Home'} userUpdated={userUpdated} />
       {assets && !activityIndicator ? (
         <>
           <Text style={styles.totalResults}>

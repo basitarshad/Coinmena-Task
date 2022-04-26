@@ -6,13 +6,15 @@ import Modal from './Modal';
 
 type HeaderProps = {
   title: string;
+  userUpdated: Function;
 };
 
-const Header: React.FC<HeaderProps> = ({title}) => {
+const Header: React.FC<HeaderProps> = ({title, userUpdated}) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
+    userUpdated(isModalVisible);
   };
 
   return (
