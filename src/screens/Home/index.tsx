@@ -7,12 +7,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-
+import {Menu, Pressable, NativeBaseProvider} from 'native-base';
 import {RootStackParamList} from '../RootStackParams';
 import Header from '../../components/Header';
+import Options from '../../../assets/more.png';
 
 type homeScreenProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
@@ -43,15 +45,43 @@ function HomeScreen() {
   };
 
   const renderItem = ({item, index}) => (
-    <View style={styles.listItemContainer}>
-      <View style={styles.slugContainer}>
-        <Text style={styles.symbolText}>{item?.symbol}</Text>
+    <NativeBaseProvider>
+      <View style={styles.listItemContainer}>
+        <View
+          style={{
+            flexDirection: 'row',
+            aligItems: 'center',
+          }}>
+          <View style={styles.slugContainer}>
+            <Text style={styles.symbolText}>{item?.symbol}</Text>
+          </View>
+          <View style={styles.details}>
+            <Text style={styles.serialId}>{item?.serial_id}</Text>
+            <Text style={styles.nameText}>{item?.name}</Text>
+          </View>
+        </View>
+        <Menu
+          trigger={triggerProps => {
+            return (
+              <Pressable
+                accessibilityLabel="More options menu"
+                {...triggerProps}>
+                <Image
+                  source={Options}
+                  style={{
+                    width: 20,
+                    height: 20,
+                    resizeMode: 'contain',
+                  }}
+                />
+              </Pressable>
+            );
+          }}>
+          <Menu.Item>Buy</Menu.Item>
+          <Menu.Item>Sell</Menu.Item>
+        </Menu>
       </View>
-      <View style={styles.details}>
-        <Text style={styles.serialId}>{item?.serial_id}</Text>
-        <Text style={styles.nameText}>{item?.name}</Text>
-      </View>
-    </View>
+    </NativeBaseProvider>
   );
 
   return (
@@ -88,6 +118,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     aligItems: 'center',
     marginTop: 10,
+    borderWidth: 0.5,
+    borderColor: '#d4d4d4',
+    padding: 10,
+    borderRadius: 10,
+    justifyContent: 'space-between',
   },
   slugContainer: {
     borderWidth: 1.5,
